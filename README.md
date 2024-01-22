@@ -19,6 +19,8 @@ The Marvel Soccer Team is a React-based web application that allows users to cre
 - React-Bootstrap for modal
 - Axios for API requests
 
+## Install and Setup
+
 1 **Install Dependencies**
 npm install
 
