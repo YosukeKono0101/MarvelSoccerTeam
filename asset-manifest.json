@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/MarvelSoccerTeam/static/css/main.9b63ce8e.css",
+    "main.js": "/MarvelSoccerTeam/static/js/main.3327a01d.js",
+    "static/media/IntroImage.png": "/MarvelSoccerTeam/static/media/IntroImage.3cf7270abfc0b7541b7d.png",
+    "index.html": "/MarvelSoccerTeam/index.html",
+    "main.9b63ce8e.css.map": "/MarvelSoccerTeam/static/css/main.9b63ce8e.css.map",
+    "main.3327a01d.js.map": "/MarvelSoccerTeam/static/js/main.3327a01d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9b63ce8e.css",
+    "static/js/main.3327a01d.js"
+  ]
+}
