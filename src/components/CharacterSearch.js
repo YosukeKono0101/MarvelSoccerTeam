@@ -135,9 +135,7 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
     }
 
     // when selected position taken
-    const isPositionTaken = selectedPlayers.some(
-      (player) => player.position === teamPosition
-    );
+    const isPositionTaken = selectedPlayers.some((player) => player.position === teamPosition);
 
     if (isPositionTaken) {
       alert("This position is already taken.");
@@ -145,9 +143,7 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
     }
 
     // when selected character has already been selected for another position
-    const isAlreadySelected = selectedPlayers.some(
-      (player) => player.id === selectedCharacter.id
-    );
+    const isAlreadySelected = selectedPlayers.some((player) => player.id === selectedCharacter.id);
 
     if (isAlreadySelected) {
       alert("This character has already been selected for another position.");
@@ -162,26 +158,14 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
 
     // positions required
     const hasRequiredPositions = (team) => {
-      const requiredPositions = [
-        "goalkeeper",
-        "defender",
-        "midfielder",
-        "striker",
-      ];
+      const requiredPositions = ["goalkeeper", "defender", "midfielder", "striker"];
       const teamPositions = team.map((player) => player.position);
-      return requiredPositions.every((position) =>
-        teamPositions.includes(position)
-      );
+      return requiredPositions.every((position) => teamPositions.includes(position));
     };
 
-    const newTeam = [
-      ...selectedPlayers,
-      { ...selectedCharacter, position: teamPosition },
-    ];
+    const newTeam = [...selectedPlayers, { ...selectedCharacter, position: teamPosition }];
     if (newTeam.length === 5 && !hasRequiredPositions(newTeam)) {
-      setPositionError(
-        "The team must include at least one goalkeeper, midfielder, striker, and defender."
-      );
+      setPositionError("The team must include at least one goalkeeper, midfielder, striker, and defender.");
       return;
     }
 
@@ -191,14 +175,14 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
       image: `${selectedCharacter.thumbnail.path}.${selectedCharacter.thumbnail.extension}`,
       description: sanitizeDescription(selectedCharacter.description),
     });
-    // reset state aftr adding character to team
+    // reset state after adding character to team
     setSelectedCharacter(null);
     setTeamPosition("");
   };
 
   // render comic list
   const renderComicList = (comics) => {
-    if (!comics || comics.lenth === 0) return <p>No comics available</p>;
+    if (!comics || comics.length === 0) return <p>No comics available</p>;
     return (
       <ul>
         {comics.items.map((comic, index) => (
@@ -224,26 +208,15 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
     <SearchContainer id="search">
       <SearchMessage>Create your ultimate Marvel Soccer Team!</SearchMessage>
       <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-        <SearchInput
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for Marvel characters"
-        />
+        <SearchInput type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search for Marvel characters" />
         <SearchButton onClick={handleSearch}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </SearchButton>
       </div>
       <CardsContainer>
         {characters.map((character) => (
-          <CharacterCard
-            key={character.id}
-            onClick={() => handleCardClick(character)}
-          >
-            <img
-              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              alt={character.name}
-            />
+          <CharacterCard key={character.id} onClick={() => handleCardClick(character)}>
+            <img src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt={character.name} />
             <h3>{character.name}</h3>
           </CharacterCard>
         ))}
@@ -254,18 +227,12 @@ const CharacterSearch = ({ onAddToTeam, selectedPlayers }) => {
           <Modal.Title>{selectedCharacter?.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ModalDescription>
-            {selectedCharacter &&
-              sanitizeDescription(selectedCharacter.description)}
-          </ModalDescription>
+          <ModalDescription>{selectedCharacter && sanitizeDescription(selectedCharacter.description)}</ModalDescription>
           <h4>Comics</h4>
           {selectedCharacter && renderComicList(selectedCharacter.comics)}
           <h4>Series</h4>
           {selectedCharacter && renderSeriesList(selectedCharacter.series)}
-          <NoteText>
-            Note: The team must include at least one goalkeeper, midfielder,
-            striker, and defender.
-          </NoteText>
+          <NoteText>Note: The team must include at least one goalkeeper, midfielder, striker, and defender.</NoteText>
           {positionError && <p className="text-danger">{positionError}</p>}
           <select onChange={(e) => setTeamPosition(e.target.value)}>
             <option value="">Select Position</option>
